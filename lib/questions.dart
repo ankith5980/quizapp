@@ -1,4 +1,7 @@
+
+
 import 'package:flutter/material.dart';
+import 'package:quizapp/questionlist.dart';
 
 class Questions extends StatefulWidget {
   const Questions({super.key});
@@ -19,33 +22,33 @@ class _QuestionsState extends State<Questions> {
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 200, 20, 0),
                 child: Text(
-                  'Question 1',
+                  _question[ind].qus,
                   style: TextStyle(color: Colors.white, fontSize: 30),
                 ),
               ),
               SizedBox(
-                height: 380,
+                height: 260,
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {nextqus();},
                 child: Text(
                   'True',
                   style: TextStyle(color: Colors.white, fontSize: 30),
                 ),
-                style: TextButton.styleFrom(
-                  backgroundColor: Colors.green, fixedSize: Size(600,50)
-                ),
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green, fixedSize: Size(600, 50)),
               ),
               SizedBox(
                 height: 10,
               ),
               TextButton(
-                  onPressed: () {},
-                  child: Text('False', style: TextStyle(color: Colors.white, fontSize: 30),
-                  ),
-                style: TextButton.styleFrom(
-                  backgroundColor: Colors.red, fixedSize: Size(600, 50)
+                onPressed: () {nextqus();},
+                child: Text(
+                  'False',
+                  style: TextStyle(color: Colors.white, fontSize: 30),
                 ),
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red, fixedSize: Size(600, 50)),
               ),
             ],
           ),
@@ -53,4 +56,34 @@ class _QuestionsState extends State<Questions> {
       ),
     );
   }
+
+  List _question = [
+    Quiz(qus: "A car has four wheels", ans: true),
+    Quiz(qus: "Bike has 3 wheels", ans: false),
+    Quiz(qus: "The Moon revolves around the Earth", ans: true),
+    Quiz(qus: "The sky is blue in color", ans: true),
+    Quiz(qus: "Human blood is green in color", ans: false),
+    Quiz(qus: "India is an Asian country", ans: true),
+    Quiz(qus: "Kerala is a state of America", ans: true),
+    Quiz(qus: "125  is less than 30", ans: false),
+    Quiz(qus: "Messi is a cricket player", ans: false),
+    Quiz(qus: "A dog has 4 legs", ans: true)
+  ];
+
+  int count=0;
+  int ind = 0;
+
+  void nextqus(){
+
+    setState(() {
+
+      if(ind<_question.length-1){
+        ind++;
+        print(ind);
+      }
+
+    });
+
+  }
+
 }
