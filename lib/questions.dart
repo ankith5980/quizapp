@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:quizapp/questionlist.dart';
 
@@ -30,7 +28,10 @@ class _QuestionsState extends State<Questions> {
                 height: 260,
               ),
               TextButton(
-                onPressed: () {nextqus();},
+                onPressed: () {
+                  compare(true);
+                  nextqus();
+                },
                 child: Text(
                   'True',
                   style: TextStyle(color: Colors.white, fontSize: 30),
@@ -42,7 +43,10 @@ class _QuestionsState extends State<Questions> {
                 height: 10,
               ),
               TextButton(
-                onPressed: () {nextqus();},
+                onPressed: () {
+                  compare(false);
+                  nextqus();
+                },
                 child: Text(
                   'False',
                   style: TextStyle(color: Colors.white, fontSize: 30),
@@ -50,6 +54,11 @@ class _QuestionsState extends State<Questions> {
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.red, fixedSize: Size(600, 50)),
               ),
+
+              SizedBox(height: 10,),
+
+              Text(result, style: TextStyle(color:Colors.white, fontSize: 16),)
+
             ],
           ),
         ),
@@ -64,25 +73,35 @@ class _QuestionsState extends State<Questions> {
     Quiz(qus: "The sky is blue in color", ans: true),
     Quiz(qus: "Human blood is green in color", ans: false),
     Quiz(qus: "India is an Asian country", ans: true),
-    Quiz(qus: "Kerala is a state of America", ans: true),
+    Quiz(qus: "Kerala is a state of America", ans: false),
     Quiz(qus: "125  is less than 30", ans: false),
     Quiz(qus: "Messi is a cricket player", ans: false),
     Quiz(qus: "A dog has 4 legs", ans: true)
   ];
 
-  int count=0;
-  int ind = 0;
+  int ind = 0; // variable for question number
+  String result="";
 
-  void nextqus(){
-
+  void nextqus() {
     setState(() {
-
-      if(ind<_question.length-1){
+      if (ind < _question.length - 1) {
         ind++;
-        print(ind);
       }
-
     });
+  }
+
+  void compare(bool answer){
+
+    if(answer==_question[ind].ans){
+
+      result="Correct";
+
+    }
+    else{
+
+      result="Incorrect";
+
+    }
 
   }
 
